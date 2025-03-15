@@ -426,8 +426,8 @@
         // Cerrar el menú lateral al hacer clic fuera de él
         document.addEventListener("click", (e) => {
             if (sidebar.style.width === "250px" && !sidebar.contains(e.target)) {
-        sidebar.style.width = "0"; /* Cierra el menú */
-        }
+                sidebar.style.width = "0"; /* Cierra el menú */
+            }
         });
 
         // Script para animaciones al hacer scroll
