@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mis servicios que realizo</title>
+    <!-- Incluir Animate.css -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
+    />
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #f5f5f5;
+            color: #333;
+        }
+        .header {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 10px 3%;
+            background: #2E7D32; /* Fondo verde */
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        .logo img {
+            height: 85px;
+            width: 85px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+        .logo {
+            margin-right: 160px;    
+        }
+        .menu {
+            font-size: 24px;
+            cursor: pointer;
+            color: white;
+            display: none;
+        }
+        .nav-links {
+            display: flex;
+            gap: 20px;
+            align-items: center;
+        }
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-size: 18px;
+            transition: color 0.3s;
+        }
+        .nav-links a:hover {
+            color: #4CAF50; /* Verde claro al hacer hover */
+        }
+        .services-page {
+            text-align: center;
+            padding: 50px 3%;
+        }
+        .services-page h1 {
+            font-size: 36px;
+            color: #4CAF50; /* Verde para los títulos */
+            margin-bottom: 40px;
+        }
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            justify-content: center;
+        }
+        .service-card {
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        .service-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+        }
+        .service-card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 10px 10px 0 0;
+        }
+        .service-card h2 {
+            font-size: 20px;
+            color: #4CAF50; /* Verde para los títulos de las tarjetas */
+            margin: 15px 0 10px;
+        }
+        .service-card p {
+            font-size: 16px;
+            color: #666;
+            padding: 0 15px 20px;
+        }
+        .footer {
+            text-align: center;
+            padding: 20px;
+            background: white;
+            margin-top: 50px;
+            box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.1);
+        }
+        .footer p {
+            margin: 0;
+            font-size: 14px;
+            color: #666;
+        }
+
+        /* Estilos para móviles */
+        @media (max-width: 768px) {
+            .services-grid {
+                grid-template-columns: 1fr;
+            }
+            .services-page h1 {
+                font-size: 28px;
+            }
+            .nav-links {
+                display: none;
+            }
+            .menu {
+                display: block;
+            }
+        }
+
+        /* Estilos para pantallas grandes */
+        @media (min-width: 1024px) {
+            .services-grid {
+                grid-template-columns: repeat(3, 1fr); /* 3 cuadros por fila */
+                max-width: 1200px; /* Limita el ancho máximo */
+                margin: 0 auto; /* Centra el contenedor */
+            }
+        }
+
+        /* Animaciones personalizadas */
+        .animate-on-scroll {
+            opacity: 0;
+            transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out;
+        }
+        .animate-on-scroll.visible {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        /* Menú lateral */
+        .sidebar {
+            height: 100%;
+            width: 0;
+            position: fixed;
+            top: 0;
+            right: 0;
+            background: rgba(46, 125, 50, 0.9); /* Fondo verde con transparencia */
+            overflow-x: hidden;
+            transition: 0.5s;
+            padding-top: 60px;
+            z-index: 1000;
+        }
+        .sidebar a {
+            padding: 10px 15px;
+            text-decoration: none;
+            font-size: 18px;
+            color: white;
+            display: block;
+            transition: 0.3s;
+        }
+        .sidebar a:hover {
+            background: rgba(76, 175, 80, 0.7); /* Verde claro al hacer hover */
+        }
+        .sidebar .close-btn {
+            position: absolute;
+            top: 10px;
+            right: 25px;
+            font-size: 30px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <!-- Logo -->
+        <div class="logo">
+            <img src="https://i.imgur.com/kmn0jDx.jpeg" alt="Logo">
+        </div>
+        <!-- Menú para PC -->
+        <div class="nav-links">
+            <a href="index.html">Inicio</a>
+            <a href="index.html#sigueme">Contactos</a>
+            <a href="index.html#servicios">Servicios</a>
+            <a href="index.html#acerca-de-mi">Acerca de mi</a>
+        </div>
+        <!-- Menú para móviles -->
+        <div class="menu" id="menu-btn">&#9776;</div>
+    </header>
+
+    <!-- Menú lateral -->
+    <div class="sidebar" id="sidebar">
+        <a href="#" class="close-btn" id="close-btn">&times;</a>
+        <a href="index.html">Inicio</a>
+        <a href="index.html#sigueme">Contactos</a>
+        <a href="index.html#servicios">Servicios</a>
+        <a href="index.html#acerca-de-mi">Acerca de mi</a>
+    </div>
+
+    <section class="services-page">
+        <h1 class="animate-on-scroll">Mis servicios que realizo</h1>
+        <div class="services-grid">
+            <!-- Servicio 1 -->
+            <div class="service-card animate-on-scroll">
+                <img src="https://i.imgur.com/aaK41RQ.jpeg" alt="Corte cabalero y dama">
+                <h2>Corte de dama y caballero</h2>
+                <p>Corte clasico   -   Corte recto <br> Corte Degradado - Corte en capas <br> Corte a tijera  - Corte en V</p>
+            </div>
+            <!-- Servicio 2 -->
+            <div class="service-card animate-on-scroll">
+                <img src="https://i.imgur.com/28t8MqU.jpeg" alt="Peinados">
+                <h2>Peinados</h2>
+                <p>Peinado Recogido - Peinados con Trenzas <br> Peinados Sueltos - Peinados para Eventos</p>
+            </div>
+            <!-- Servicio 3 -->
+            <div class="service-card animate-on-scroll">
+                <img src="https://i.imgur.com/4V9De9q.png" alt="Alisados y rizados">
+                <h2>Alisados y rizados</h2>
+                <p>Alisado japonés(permanente)<br>Ondulacion permanente <br> Alisado brasileño(semipermanente) </p>
+            </div>
+            <!-- Servicio 4 -->
+            <div class="service-card animate-on-scroll">
+                <img src="https://i.imgur.com/B420Y16.jpeg" alt="Tintes">
+                <h2>Tintes</h2>
+                <p>Cubrimiento de canas - Tinte en raíces <br> Baño de color - Neutralizacion</p>
+            </div>
+            <!-- Servicio 5 -->
+            <div class="service-card animate-on-scroll">
+                <img src="https://i.imgur.com/wGST3j4.jpeg" alt="Decoloración">
+                <h2>Decoloración</h2>
+                <p>Decoloración global - Decoloración por secciones <br> Corrección de color - Decoloración para tintes fantasía </p>
+            </div>
+            <!-- Servicio 6 -->
+            <div class="service-card animate-on-scroll">
+                <img src="https://i.imgur.com/167JhX3.jpeg" alt="Técnicas de coloración">
+                <h2>Técnicas de coloración</h2>
+                <p>Balayage - mechas <br> Babylights - ombré </p>
+            </div>
+            <!-- Servicio 7 -->
+            <div class="service-card animate-on-scroll">
+                <img src="https://i.imgur.com/cg6Bw0F.jpeg" alt="Tratamientos capilares">
+                <h2>Tratamientos capilares</h2>
+                <p>Botox capilar - Keratina <br> Peeling capilar - Hidratación profunda</p>
+            </div>
+            <!-- Servicio 8 -->
+            <div class="service-card animate-on-scroll">
+                <img src="https://i.imgur.com/yegTNEv.jpeg" alt="Manicure y pedicure">
+                <h2>Manicure y pedicure</h2>
+                <p>Manicura clásica - Pedicura clásica <br> Manicura francesa- Pedicura completa</p>
+            </div>
+        </div>
+    </section>
+    <footer class="footer">
+        <p>&copy; 2025 Peluquería LM. Todos los derechos reservados.</p>
+    </footer>
+
+    <!-- Script para el menú lateral -->
+    <script>
+        const menuBtn = document.getElementById("menu-btn");
+        const sidebar = document.getElementById("sidebar");
+        const closeBtn = document.getElementById("close-btn");
+
+        menuBtn.addEventListener("click", () => {
+            sidebar.style.width = "250px"; /* Abre el menú */
+        });
+
+        closeBtn.addEventListener("click", () => {
+            sidebar.style.width = "0"; /* Cierra el menú */
+        });
+
+        // Script para animaciones al hacer scroll
+        const animateElements = document.querySelectorAll(".animate-on-scroll");
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach((entry) => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add("visible");
+                } else {
+                    entry.target.classList.remove("visible");
+                }
+            });
+        }, { threshold: 0.5 });
+
+        animateElements.forEach((element) => {
+            observer.observe(element);
+        });
+    </script>
+</body>
+</html>

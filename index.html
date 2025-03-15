@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Peluquería</title>
+    <!-- Incluir Animate.css -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
+    />
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #f5f5f5;
+            color: #333;
+        }
+        .header {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 10px 3%;
+            background: #2E7D32; /* Fondo verde */
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        .logo img {
+            height: 85px;
+            width: 85px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+        .logo {
+            margin-right: 160px;
+        }
+        .menu {
+            font-size: 24px;
+            cursor: pointer;
+            color: white;
+            display: none;
+        }
+        .nav-links {
+            display: flex;
+            gap: 20px;
+            align-items: center;
+        }
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-size: 18px;
+            transition: color 0.3s;
+        }
+        .nav-links a:hover {
+            color: #4CAF50; /* Verde claro al hacer hover */
+        }
+        .hero {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background: #e0f2e9; /* Fondo verde claro */
+            padding: 20px;
+            text-align: center;
+        }
+        .hero img {
+            width: 100%;
+            height: auto;
+            border-radius: 10px;
+            margin-bottom: 20px;
+        }
+        .hero-text {
+            width: 100%;
+        }
+        .hero-text h1 {
+            font-size: 32px; /* Texto más grande */
+            font-weight: bold;
+            color: #4CAF50; /* Verde para el título */
+        }
+        .hero-text p {
+            font-size: 18px; /* Texto más grande */
+            color: #666;
+        }
+        .btn {
+            background: #4CAF50; /* Verde para los botones */
+            color: white;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 5px;
+            display: inline-block;
+            margin-top: 10px;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        .btn-3d {
+            background: #4CAF50; /* Verde para los botones */
+            color: white;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 5px;
+            display: inline-block;
+            margin-top: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        .btn-3d:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 8px rgba(0, 0, 0, 0.3);
+        }
+        .services {
+            text-align: center;
+            padding: 20px;
+        }
+        .services h2 {
+            color: #4CAF50; /* Verde para los títulos */
+            font-size: 28px; /* Texto más grande */
+        }
+        .service-container {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+        .service {
+            width: 100%;
+            text-align: center;
+        }
+        .service img {
+            width: 100%;
+            height: 200px;
+            border-radius: 10px;
+            object-fit: cover;
+        }
+        .service p {
+            background: rgba(255, 255, 255, 0.8);
+            padding: 10px;
+            margin-top: -50px;
+            position: relative;
+            font-weight: bold;
+            color: #4CAF50; /* Verde para el texto */
+            font-size: 18px; /* Texto más grande */
+        }
+        .values-section {
+            background: #e0f2e9; /* Fondo verde claro */
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+        .values-text {
+            width: 100%;
+            order: 1; /* Cambia el orden para móviles */
+        }
+        .values-text h2 {
+            font-size: 28px; /* Texto más grande */
+            color: #4CAF50; /* Verde para los títulos */
+        }
+        .values-text p {
+            font-size: 18px; /* Texto más grande */
+            color: #666;
+        }
+        .values-images {
+            width: 100%;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 20px;
+            order: 2; /* Cambia el orden para móviles */
+        }
+        .values-images img {
+            width: calc(50% - 5px); /* Ajusta el tamaño para que quepan dos imágenes en una fila */
+            border-radius: 10px;
+        }
+        .footer {
+        display: flex;
+        flex-direction: row; /* Coloca los elementos en una fila en pantallas grandes */
+        justify-content: space-between; /* Separa los elementos */
+        align-items: center; /* Centra verticalmente */
+        background: white;
+        padding: 10px 10%; /* Ajusta el padding lateral */
+        font-size: 16px;
+        text-align: center;
+        margin-top: 20px;
+        gap: 120px; /* Espacio entre los bloques */
+    }
+
+    /* Estilos para móviles */
+    @media (max-width: 768px) {
+        .footer {
+            flex-direction: column; /* Apila los elementos verticalmente */
+            gap: 20px; /* Reduce el espacio entre los bloques */
+            padding: 20px 10%; /* Ajusta el padding para móviles */
+        }
+        .socials,
+        .contact {
+            margin: 0; /* Elimina los márgenes automáticos */
+        }
+    }
+
+    .socials {
+        display: flex;
+        align-items: center;
+        gap: 15px;
+        margin-left: auto; /* Mueve el bloque a la derecha en pantallas grandes */
+    }
+    .socials img {
+        width: 30px;
+        height: 30px;
+    }
+    .contact {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        margin-right: auto; /* Mueve el bloque a la izquierda en pantallas grandes */
+    }
+    .contact img {
+        width: 30px;
+        height: 30px;
+    }
+        /* Estilos para pantallas más grandes (tablets y escritorio) */
+        @media (min-width: 768px) {
+            .hero {
+                flex-direction: row;
+                padding: 40px 10%;
+                text-align: left;
+            }
+            .hero img {
+                width: 50%;
+                margin-bottom: 0;
+            }
+            .hero-text {
+                width: 50%;
+                padding-left: 20px;
+            }
+            .services {
+                padding: 50px 10%;
+            }
+            .service-container {
+                flex-direction: row;
+                gap: 20px;
+            }
+            .service {
+                width: 30%;
+            }
+            .services .btn-container {
+                width: 100%;
+                text-align: center;
+                margin-top: 20px;
+            }
+            .values-section {
+                flex-direction: row;
+                text-align: left;
+                padding: 50px 10%;
+            }
+            .values-text {
+                width: 45%;
+                order: 0; /* Restaura el orden original */
+            }
+            .values-images {
+                width: 50%;
+                order: 0; /* Restaura el orden original */
+            }
+            .values-images img {
+                width: 48%;
+            }
+            .footer {
+                flex-direction: row;
+                justify-content: space-between;
+                text-align: left;
+            }
+            .socials {
+                margin-bottom: 0;
+            }
+        }
+
+        /* Animaciones personalizadas */
+        .animate-on-scroll {
+            opacity: 0;
+            transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out;
+        }
+        .animate-on-scroll.visible {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        /* Menú lateral */
+        .sidebar {
+            height: 100%;
+            width: 0;
+            position: fixed;
+            top: 0;
+            right: 0;
+            background: rgba(46, 125, 50, 0.9); /* Fondo verde con transparencia */
+            overflow-x: hidden;
+            transition: 0.5s;
+            padding-top: 60px;
+            z-index: 1000;
+        }
+        .sidebar a {
+            padding: 10px 15px;
+            text-decoration: none;
+            font-size: 18px;
+            color: white;
+            display: block;
+            transition: 0.3s;
+        }
+        .sidebar a:hover {
+            background: rgba(76, 175, 80, 0.7); /* Verde claro al hacer hover */
+        }
+        .sidebar .close-btn {
+            position: absolute;
+            top: 10px;
+            right: 25px;
+            font-size: 30px;
+            cursor: pointer;
+        }
+
+        /* Estilos para móviles */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+            .menu {
+                display: block;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <!-- Logo -->
+        <div class="logo">
+            <img src="https://i.imgur.com/kmn0jDx.jpeg" alt="Logo">
+        </div>
+        <!-- Menú para PC -->
+        <div class="nav-links">
+            <a href="index.html">Inicio</a>
+            <a href="#sigueme">Contactos</a>
+            <a href="#servicios">Servicios</a>
+            <a href="#acerca-de-mi">Acerca de mi</a>
+        </div>
+        <!-- Menú para móviles -->
+        <div class="menu" id="menu-btn">&#9776;</div>
+    </header>
+
+    <!-- Menú lateral -->
+    <div class="sidebar" id="sidebar">
+        <a href="#" class="close-btn" id="close-btn">&times;</a>
+        <a href="index.html">Inicio</a>
+        <a href="#sigueme">Contactos</a>
+        <a href="#servicios">Servicios</a>
+        <a href="#acerca-de-mi">Acerca de mi</a>
+    </div>
+
+    <section class="hero animate-on-scroll">
+        <img src="https://i.imgur.com/j9JRMyr.jpeg" alt="Imagen de peluquería">
+        <div class="hero-text">
+            <h1>Tu Peluquera Personal, Donde Tú Estés</h1>
+            <p>Con años de experiencia y pasión por el arte de la peluquería. Descubre mis múltiples servicios que realizo.</p>
+            <a href="#sigueme" class="btn btn-3d">Contáctame</a>
+        </div>
+    </section>
+    <section class="services" id="servicios">
+        <h2 class="animate-on-scroll">Servicios que realizo</h2>
+        <div class="service-container">
+            <div class="service animate-on-scroll">
+                <img src="https://i.imgur.com/aaK41RQ.jpeg" alt="Cortes de Damas">
+                <p>Cortes de Damas</p>
+            </div>
+            <div class="service animate-on-scroll">
+                <img src="https://i.imgur.com/Hl7Qbxs.jpeg" alt="Decoloración">
+                <p>Decoloración</p>
+            </div>
+            <div class="service animate-on-scroll">
+                <img src="https://i.imgur.com/yegTNEv.jpeg" alt="Manicure y Pedicure">
+                <p>Manicure y Pedicure</p>
+            </div>
+        </div>
+        <!-- Contenedor para el botón "Más servicios aquí" -->
+        <div class="btn-container animate-on-scroll">
+            <a href="servicios.html" class="btn btn-3d">Más servicios aquí</a>
+        </div>
+    </section>
+    <section class="values-section" id="acerca-de-mi">
+        <div class="values-text animate-on-scroll">
+            <h2>Acerca de mí</h2>
+            <p>Hola, soy Luz Merly, una apasionada peluquera con 2 años de experiencia en el mundo de la belleza y el cuidado capilar.<br><br>
+                Mi enfoque es simple: escuchar, entender y crear. Cada persona es única, y por eso me esfuerzo por ofrecer un servicio totalmente personalizado, adaptado a tus necesidades, estilo y personalidad.</p>
+            <!-- Botón corregido -->
+            <a href="sobre-mi.html" class="btn btn-3d">¿Por qué elegirme?</a>
+        </div>
+        <div class="values-images animate-on-scroll">
+            <img src="https://i.imgur.com/qblA5gW.jpeg" alt="Facial">
+            <img src="https://i.imgur.com/NVgrGiD.jpeg" alt="Masaje">
+        </div>
+    </section>
+    <footer class="footer">
+        <div class="socials" id="sigueme">
+            <p><strong>Mis redes Sociales</strong></p>
+            <img src="https://i.imgur.com/8hR7Jnf.jpeg" alt="Facebook">
+            <img src="https://i.imgur.com/KKzc3k6.jpeg" alt="Twitter">
+            <img src="https://i.imgur.com/t0pYvqO.png" alt="Instagram">
+            <img src="https://i.imgur.com/dgU3k6H.png" alt="TikTok">
+        </div>
+        <div class="contact">
+            <p><strong>Contáctame para más información</strong></p>
+            <img src="https://i.imgur.com/1eDqgzS.jpeg" alt="WhatsApp">
+            <p>+51 999 999 999</p>
+        </div>
+    </footer>
+
+    <!-- Script para el menú lateral -->
+    <script>
+        const menuBtn = document.getElementById("menu-btn");
+        const sidebar = document.getElementById("sidebar");
+        const closeBtn = document.getElementById("close-btn");
+
+        menuBtn.addEventListener("click", () => {
+            sidebar.style.width = "250px"; /* Abre el menú */
+        });
+
+        closeBtn.addEventListener("click", () => {
+            sidebar.style.width = "0"; /* Cierra el menú */
+        });
+
+        // Script para animaciones al hacer scroll
+        const animateElements = document.querySelectorAll(".animate-on-scroll");
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach((entry) => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add("visible");
+                } else {
+                    entry.target.classList.remove("visible");
+                }
+            });
+        }, { threshold: 0.5 });
+
+        animateElements.forEach((element) => {
+            observer.observe(element);
+        });
+    </script>
+</body>
+</html>

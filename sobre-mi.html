@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>¿Por qué elegirme?</title>
+    <!-- Incluir Animate.css -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
+    />
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #f5f5f5;
+            color: #333;
+        }
+        .header {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 10px 3%;
+            background: #2E7D32;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            gap: 5px;
+        }
+        .logo img {
+            height: 85px;
+            width: 85px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+        .logo {
+            margin-right: 160px;
+        }
+        .menu {
+            font-size: 24px;
+            cursor: pointer;
+            color: white;
+            display: none;
+        }
+        .nav-links {
+            display: flex;
+            gap: 20px;
+            align-items: center;
+        }
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-size: 18px;
+            transition: color 0.3s;
+        }
+        .nav-links a:hover {
+            color: #4CAF50;
+        }
+        .section {
+            padding: 50px 3%;
+            text-align: center;
+        }
+        .section h2 {
+            font-size: 36px;
+            color: #4CAF50;
+            margin-bottom: 20px;
+        }
+        .section p {
+            font-size: 20px;
+            color: #666;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        .section.color-bg {
+            background: #e0f2e9;
+        }
+        .section.white-bg {
+            background: white;
+        }
+        .two-columns {
+            display: flex;
+            justify-content: space-between;
+            gap: 40px;
+            margin-top: 30px;
+        }
+        .two-columns .column {
+            width: 48%;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .two-columns img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 10px;
+            margin-top: 20px;
+        }
+        .footer {
+            text-align: center;
+            padding: 20px;
+            background: white;
+            margin-top: 50px;
+            box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.1);
+        }
+        .footer p {
+            margin: 0;
+            font-size: 14px;
+            color: #666;
+        }
+
+        /* Estilos para móviles */
+        @media (max-width: 768px) {
+            .two-columns {
+                flex-direction: column;
+            }
+            .two-columns .column {
+                width: 100%;
+            }
+            .nav-links {
+                display: none;
+            }
+            .menu {
+                display: block;
+            }
+            .section h2 {
+                font-size: 28px;
+            }
+            .section p {
+                font-size: 18px;
+            }
+        }
+
+        /* Ajustar tamaño de las imágenes en la sección de "Mis estudios" */
+        .section.color-bg .two-columns img {
+            max-width: 300px;
+            width: 100%;
+            height: auto;
+        }
+
+        /* Estilos para la nueva sección "Mis certificados" */
+        .section.certificados {
+            background: white;
+        }
+        .section.certificados .two-columns img {
+            max-width: 300px;
+            width: 100%;
+            height: auto;
+        }
+
+        /* Estilos para el menú lateral */
+        .sidebar {
+            height: 100%;
+            width: 0;
+            position: fixed;
+            top: 0;
+            right: 0;
+            background: rgba(46, 125, 50, 0.8);
+            overflow-x: hidden;
+            transition: 0.5s;
+            padding-top: 60px;
+            z-index: 1000;
+        }
+        .sidebar a {
+            padding: 10px 15px;
+            text-decoration: none;
+            font-size: 18px;
+            color: white;
+            display: block;
+            transition: 0.3s;
+        }
+        .sidebar a:hover {
+            background: rgba(76, 175, 80, 0.7);
+        }
+        .sidebar .close-btn {
+            position: absolute;
+            top: 10px;
+            right: 25px;
+            font-size: 30px;
+            cursor: pointer;
+        }
+
+        /* Animaciones personalizadas para fadeOut */
+        @keyframes fadeOutLeft {
+            from {
+                opacity: 1;
+                transform: translateX(0);
+            }
+            to {
+                opacity: 0;
+                transform: translateX(-100%);
+            }
+        }
+
+        .fadeOutLeft {
+            animation: fadeOutLeft 0.5s ease-in-out forwards;
+        }
+
+        /* Clases para animaciones */
+        .animate-on-scroll {
+            opacity: 0;
+            transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out;
+        }
+        .animate-on-scroll.visible {
+            opacity: 1;
+            transform: translateX(0);
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <!-- Logo -->
+        <div class="logo">
+            <img src="https://i.imgur.com/kmn0jDx.jpeg" alt="Logo">
+        </div>
+        <!-- Menú para PC -->
+        <div class="nav-links">
+            <a href="index.html">Inicio</a>
+            <a href="index.html#sigueme">Contactos</a>
+            <a href="index.html#servicios">Servicios</a>
+            <a href="index.html#acerca-de-mi">Acerca de mi</a>
+        </div>
+        <!-- Menú para móviles -->
+        <div class="menu" id="menu-btn">&#9776;</div>
+    </header>
+
+    <!-- Menú lateral -->
+    <div class="sidebar" id="sidebar">
+        <a href="#" class="close-btn" id="close-btn">&times;</a>
+        <a href="index.html">Inicio</a>
+        <a href="index.html#sigueme">Contactos</a>
+        <a href="index.html#servicios">Servicios</a>
+        <a href="index.html#acerca-de-mi">Acerca de mi</a>
+    </div>
+
+    <!-- Sección 1: Introducción -->
+    <section class="section color-bg">
+        <h2 class="animate-on-scroll"> Experiencia y Pasión </h2>
+        <p class="animate-on-scroll">
+            Cuento con una trayectoria sólida en el mundo de la peluquería, especializándome en cortes, colorimetría y tratamientos capilares.
+            <br><br> 
+            Mi trabajo no se limita a un simple cambio de look, sino a realzar la imagen y confianza de cada persona que atiendo.
+        </p>
+    </section>
+
+    <!-- Sección 2: Profesionalismo -->
+    <section class="section white-bg">
+        <h2 class="animate-on-scroll">Técnicas Personalizadas para Cada Cliente</h2>
+        <p class="animate-on-scroll">
+            Entiendo que cada cabello es único, por eso realizo un diagnóstico capilar detallado antes de cualquier procedimiento.
+            <br><br>
+            Mi enfoque está en diseñar estilos que armonicen con la forma del rostro, ya sea un corte clásico, un balayage natural o una transformación completa.
+        </p>
+    </section>
+
+    <!-- Sección 3: Atención personalizada -->
+    <section class="section color-bg">
+        <h2 class="animate-on-scroll">Uso de Productos Profesionales y Cuidados Especializados</h2>
+        <p class="animate-on-scroll">
+            La salud capilar es mi prioridad. Trabajo con productos de alta gama, libres de químicos agresivos, que protegen la fibra capilar y garantizan resultados duraderos.
+            <br><br>
+            Además, brindo asesoría sobre el mantenimiento y cuidado del cabello para prolongar los efectos del tratamiento y mejorar su textura y brillo.
+        </p>
+    </section>
+
+    <!-- Sección 4: Compromiso -->
+    <section class="section white-bg">
+        <h2 class="animate-on-scroll">Atención Exclusiva y Personalizada</h2>
+        <p class="animate-on-scroll">
+            Mi objetivo es escuchar, entender y asesorar de manera honesta, ofreciendo recomendaciones basadas en lo que realmente le favorece.
+            <br><br>
+            No se trata solo de un servicio de peluquería, sino de un espacio donde las personas se sientan cómodas, seguras y satisfechas con su imagen.
+        </p>
+    </section>
+
+    <!-- Sección 5: Mis estudios -->
+    <section class="section color-bg">
+        <h2 class="animate-on-scroll">Mis estudios</h2>
+        <div class="two-columns">
+            <!-- Columna 1 -->
+            <div class="column">
+                <p class="animate-on-scroll">
+                 Me gradué en Yataco Academy donde me especialicé en alisados y colorimetría, áreas en las que me he enfocado para brindar resultados personalizados y de alto nivel.
+                 <br>
+                 Aprendí a trabajar con diversas técnicas de color, desde balayage y mechas hasta corrección de color, además de dominar distintos métodos de alisado que respetan la salud capilar y garantizan acabados duraderos y naturales.
+                </p>
+                <img src="https://i.imgur.com/iPqZnDj.jpeg" alt="Estudios 1" class="animate-on-scroll">
+            </div>
+            <!-- Columna 2 -->
+            <div class="column">
+                <p class="animate-on-scroll">
+                Me gradue en el Instituto Superior Tecnológico Público Carlos Cueto Fernandini donde completé mi formación en peluquería profesional, adquiriendo una base sólida en cortes, técnicas de peinado, tratamientos capilares y asesoría de imagen.
+                </p>
+                <img src="https://i.imgur.com/1n5w5M4.jpeg" alt="Estudios 2" class="animate-on-scroll">
+            </div>
+        </div>
+    </section>
+
+    <!-- Nueva Sección: Mis certificados -->
+    <section class="section certificados">
+        <h2 class="animate-on-scroll">Mis certificados</h2>
+        <div class="two-columns">
+            <!-- Columna 1 -->
+            <div class="column">
+                <img src="https://i.imgur.com/JoHBuK8.jpeg" alt="Certificado 1" class="animate-on-scroll">
+            </div>
+            <!-- Columna 2 -->
+            <div class="column">
+                <img src="https://i.imgur.com/JoHBuK8.jpeg" alt="Certificado 2" class="animate-on-scroll">
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <p>&copy; 2025 Peluquería. Todos los derechos reservados.</p>
+    </footer>
+
+    <!-- Script para el menú lateral -->
+    <script>
+        const menuBtn = document.getElementById("menu-btn");
+        const sidebar = document.getElementById("sidebar");
+        const closeBtn = document.getElementById("close-btn");
+
+        menuBtn.addEventListener("click", () => {
+            sidebar.style.width = "250px"; /* Abre el menú */
+        });
+
+        closeBtn.addEventListener("click", () => {
+            sidebar.style.width = "0"; /* Cierra el menú */
+        });
+
+        // Script para animaciones al hacer scroll
+        const animateElements = document.querySelectorAll(".animate-on-scroll");
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach((entry) => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add("visible");
+                } else {
+                    entry.target.classList.remove("visible");
+                }
+            });
+        }, { threshold: 0.5 });
+
+        animateElements.forEach((element) => {
+            observer.observe(element);
+        });
+    </script>
+</body>
+</html>
