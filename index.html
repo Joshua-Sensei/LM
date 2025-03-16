@@ -5,17 +5,123 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Peluquería</title>
     <!-- Incluir Animate.css -->
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
-    />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+    <!-- Importar fuentes de Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Raleway:wght@400;700&display=swap" rel="stylesheet">
     <style>
+        /* Estilos para la pantalla de bienvenida */
+        #welcome-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: #1a1a1a; /* Fondo oscuro para contraste */
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            z-index: 1000;
+            overflow: hidden;
+        }
+
+        #welcome-title {
+            font-size: 5em;
+            font-family: 'Great Vibes', cursive; /* Fuente de caligrafía */
+            color: #4CAF50; /* Verde principal */
+            margin: 0;
+            overflow: hidden; /* Oculta el desbordamiento de las letras */
+            white-space: nowrap; /* Evita el salto de línea */
+            opacity: 0; /* Ocultar inicialmente */
+            animation: fadeInContainer 0.1s ease-in-out 0.2s forwards; /* Mostrar contenedor */
+        }
+
+        #welcome-title span {
+            display: inline-block;
+            opacity: 0;
+            animation: fadeIn 0.5s ease-in-out forwards;
+            position: relative; /* Necesario para el pseudoelemento */
+        }
+
+        /* Aplicar retrasos a cada letra (más rápidos) */
+        #welcome-title span:nth-child(1) { animation-delay: 0.2s; } /* L */
+        #welcome-title span:nth-child(2) { animation-delay: 0.4s; } /* u */
+        #welcome-title span:nth-child(3) { animation-delay: 0.6s; } /* z */
+        #welcome-title span:nth-child(4) { animation-delay: 0.8s; } /*   (espacio) */
+        #welcome-title span:nth-child(5) { animation-delay: 1s; }   /* M */
+        #welcome-title span:nth-child(6) { animation-delay: 1.2s; } /* e */
+        #welcome-title span:nth-child(7) { animation-delay: 1.4s; } /* r */
+        #welcome-title span:nth-child(8) { animation-delay: 1.6s; } /* l */
+        #welcome-title span:nth-child(9) { animation-delay: 1.8s; } /* y */
+
+        /* Efecto de partículas (simulado con pseudoelementos) */
+        #welcome-title span::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: #4CAF50; /* Color de las partículas */
+            opacity: 0; /* Inicialmente invisible */
+            transform: scale(0);
+            animation: dustParticles 1s ease-in-out forwards;
+        }
+
+        #welcome-subtitle {
+            font-size: 1.5em;
+            font-weight: 400;
+            margin-top: 20px;
+            opacity: 0;
+            color: #ffffff; /* Blanco para contraste */
+            animation: fadeIn 1s ease-in-out 2s forwards;
+        }
+
+        #welcome-image {
+            width: 150px; /* Tamaño de la imagen */
+            height: 150px;
+            border-radius: 50%; /* Forma circular */
+            margin-top: 20px;
+            opacity: 0;
+            animation: fadeIn 1s ease-in-out 3s forwards; /* Aparece después del subtítulo */
+        }
+
+        /* Animaciones */
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes fadeInContainer {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes dustParticles {
+            0% {
+                opacity: 1;
+                transform: scale(1);
+            }
+            100% {
+                opacity: 0;
+                transform: scale(0.5) translateY(20px);
+            }
+        }
+
+        @keyframes fadeOut {
+            from { opacity: 1; }
+            to { opacity: 0; }
+        }
+
+        /* Estilos generales de tu página */
         body {
             margin: 0;
             font-family: Arial, sans-serif;
             background: #f5f5f5;
             color: #333;
         }
+
         .header {
             display: flex;
             justify-content: center;
@@ -24,35 +130,42 @@
             background: #2E7D32; /* Fondo verde */
             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
         }
+
         .logo img {
             height: 85px;
             width: 85px;
             border-radius: 50%;
             object-fit: cover;
         }
+
         .logo {
             margin-right: 160px;
         }
+
         .menu {
             font-size: 24px;
             cursor: pointer;
             color: white;
             display: none;
         }
+
         .nav-links {
             display: flex;
             gap: 20px;
             align-items: center;
         }
+
         .nav-links a {
             color: white;
             text-decoration: none;
             font-size: 18px;
             transition: color 0.3s;
         }
+
         .nav-links a:hover {
             color: #4CAF50; /* Verde claro al hacer hover */
         }
+
         .hero {
             display: flex;
             flex-direction: column;
@@ -61,24 +174,29 @@
             padding: 20px;
             text-align: center;
         }
+
         .hero img {
             width: 100%;
             height: auto;
             border-radius: 10px;
             margin-bottom: 20px;
         }
+
         .hero-text {
             width: 100%;
         }
+
         .hero-text h1 {
             font-size: 32px; /* Texto más grande */
             font-weight: bold;
             color: #4CAF50; /* Verde para el título */
         }
+
         .hero-text p {
             font-size: 18px; /* Texto más grande */
             color: #666;
         }
+
         .btn {
             background: #4CAF50; /* Verde para los botones */
             color: white;
@@ -89,6 +207,7 @@
             margin-top: 10px;
             transition: transform 0.2s, box-shadow 0.2s;
         }
+
         .btn-3d {
             background: #4CAF50; /* Verde para los botones */
             color: white;
@@ -100,33 +219,40 @@
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
             transition: transform 0.2s, box-shadow 0.2s;
         }
+
         .btn-3d:hover {
             transform: translateY(-2px);
             box-shadow: 0 6px 8px rgba(0, 0, 0, 0.3);
         }
+
         .services {
             text-align: center;
             padding: 20px;
         }
+
         .services h2 {
             color: #4CAF50; /* Verde para los títulos */
             font-size: 28px; /* Texto más grande */
         }
+
         .service-container {
             display: flex;
             flex-direction: column;
             gap: 20px;
         }
+
         .service {
             width: 100%;
             text-align: center;
         }
+
         .service img {
             width: 100%;
             height: 200px;
             border-radius: 10px;
             object-fit: cover;
         }
+
         .service p {
             background: rgba(255, 255, 255, 0.8);
             padding: 10px;
@@ -136,6 +262,7 @@
             color: #4CAF50; /* Verde para el texto */
             font-size: 18px; /* Texto más grande */
         }
+
         .values-section {
             background: #e0f2e9; /* Fondo verde claro */
             padding: 20px;
@@ -144,18 +271,22 @@
             align-items: center;
             text-align: center;
         }
+
         .values-text {
             width: 100%;
             order: 1; /* Cambia el orden para móviles */
         }
+
         .values-text h2 {
             font-size: 28px; /* Texto más grande */
             color: #4CAF50; /* Verde para los títulos */
         }
+
         .values-text p {
             font-size: 18px; /* Texto más grande */
             color: #666;
         }
+
         .values-images {
             width: 100%;
             display: flex;
@@ -164,56 +295,62 @@
             margin-top: 20px;
             order: 2; /* Cambia el orden para móviles */
         }
+
         .values-images img {
             width: calc(50% - 5px); /* Ajusta el tamaño para que quepan dos imágenes en una fila */
             border-radius: 10px;
         }
-        .footer {
-        display: flex;
-        flex-direction: row; /* Coloca los elementos en una fila en pantallas grandes */
-        justify-content: space-between; /* Separa los elementos */
-        align-items: center; /* Centra verticalmente */
-        background: white;
-        padding: 10px 10%; /* Ajusta el padding lateral */
-        font-size: 16px;
-        text-align: center;
-        margin-top: 20px;
-        gap: 120px; /* Espacio entre los bloques */
-    }
 
-    /* Estilos para móviles */
-    @media (max-width: 768px) {
         .footer {
-            flex-direction: column; /* Apila los elementos verticalmente */
-            gap: 20px; /* Reduce el espacio entre los bloques */
-            padding: 20px 10%; /* Ajusta el padding para móviles */
+            display: flex;
+            flex-direction: row; /* Coloca los elementos en una fila en pantallas grandes */
+            justify-content: space-between; /* Separa los elementos */
+            align-items: center; /* Centra verticalmente */
+            background: white;
+            padding: 10px 10%; /* Ajusta el padding lateral */
+            font-size: 16px;
+            text-align: center;
+            margin-top: 20px;
+            gap: 120px; /* Espacio entre los bloques */
         }
-        .socials,
+
+        /* Estilos para móviles */
+        @media (max-width: 768px) {
+            .footer {
+                flex-direction: column; /* Apila los elementos verticalmente */
+                gap: 20px; /* Reduce el espacio entre los bloques */
+                padding: 20px 10%; /* Ajusta el padding para móviles */
+            }
+            .socials,
+            .contact {
+                margin: 0; /* Elimina los márgenes automáticos */
+            }
+        }
+
+        .socials {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-left: auto; /* Mueve el bloque a la derecha en pantallas grandes */
+        }
+
+        .socials img {
+            width: 30px;
+            height: 30px;
+        }
+
         .contact {
-            margin: 0; /* Elimina los márgenes automáticos */
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-right: auto; /* Mueve el bloque a la izquierda en pantallas grandes */
         }
-    }
 
-    .socials {
-        display: flex;
-        align-items: center;
-        gap: 15px;
-        margin-left: auto; /* Mueve el bloque a la derecha en pantallas grandes */
-    }
-    .socials img {
-        width: 30px;
-        height: 30px;
-    }
-    .contact {
-        display: flex;
-        align-items: center;
-        gap: 10px;
-        margin-right: auto; /* Mueve el bloque a la izquierda en pantallas grandes */
-    }
-    .contact img {
-        width: 30px;
-        height: 30px;
-    }
+        .contact img {
+            width: 30px;
+            height: 30px;
+        }
+
         /* Estilos para pantallas más grandes (tablets y escritorio) */
         @media (min-width: 768px) {
             .hero {
@@ -275,6 +412,7 @@
             opacity: 0;
             transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out;
         }
+
         .animate-on-scroll.visible {
             opacity: 1;
             transform: translateX(0);
@@ -293,6 +431,7 @@
             padding-top: 60px;
             z-index: 1000;
         }
+
         .sidebar a {
             padding: 10px 15px;
             text-decoration: none;
@@ -301,9 +440,11 @@
             display: block;
             transition: 0.3s;
         }
+
         .sidebar a:hover {
             background: rgba(76, 175, 80, 0.7); /* Verde claro al hacer hover */
         }
+
         .sidebar .close-btn {
             position: absolute;
             top: 10px;
@@ -324,87 +465,111 @@
     </style>
 </head>
 <body>
-    <header class="header">
-        <!-- Logo -->
-        <div class="logo">
-            <img src="https://i.imgur.com/kmn0jDx.jpeg" alt="Logo">
-        </div>
-        <!-- Menú para PC -->
-        <div class="nav-links">
+    <!-- Pantalla de bienvenida -->
+    <div id="welcome-screen">
+        <h1 id="welcome-title">
+            <span>L</span>
+            <span>u</span>
+            <span>z</span>
+            <span> </span>
+            <span>M</span>
+            <span>e</span>
+            <span>r</span>
+            <span>l</span>
+            <span>y</span>
+        </h1>
+        <p id="welcome-subtitle">Dedicación absoluta a realzar tu belleza natural</p>
+        <!-- Imagen circular -->
+        <img id="welcome-image" src="https://i.imgur.com/kmn0jDx.jpeg" alt="Imagen de bienvenida">
+    </div>
+
+    <!-- Contenido principal de tu página -->
+    <div id="main-content" style="display: none;">
+        <header class="header">
+            <!-- Logo -->
+            <div class="logo">
+                <img src="https://i.imgur.com/kmn0jDx.jpeg" alt="Logo">
+            </div>
+            <!-- Menú para PC -->
+            <div class="nav-links">
+                <a href="index.html">Inicio</a>
+                <a href="#sigueme">Contactos</a>
+                <a href="#servicios">Servicios</a>
+                <a href="#acerca-de-mi">Acerca de mi</a>
+            </div>
+            <!-- Menú para móviles -->
+            <div class="menu" id="menu-btn">&#9776;</div>
+        </header>
+
+        <!-- Menú lateral -->
+        <div class="sidebar" id="sidebar">
+            <a href="#" class="close-btn" id="close-btn">&times;</a>
             <a href="index.html">Inicio</a>
             <a href="#sigueme">Contactos</a>
             <a href="#servicios">Servicios</a>
             <a href="#acerca-de-mi">Acerca de mi</a>
         </div>
-        <!-- Menú para móviles -->
-        <div class="menu" id="menu-btn">&#9776;</div>
-    </header>
 
-    <!-- Menú lateral -->
-    <div class="sidebar" id="sidebar">
-        <a href="#" class="close-btn" id="close-btn">&times;</a>
-        <a href="index.html">Inicio</a>
-        <a href="#sigueme">Contactos</a>
-        <a href="#servicios">Servicios</a>
-        <a href="#acerca-de-mi">Acerca de mi</a>
+        <section class="hero animate-on-scroll">
+            <img src="https://i.imgur.com/j9JRMyr.jpeg" alt="Imagen de peluquería">
+            <div class="hero-text">
+                <h1>Tu Peluquera Personal, Donde Tú Estés</h1>
+                <p>Con años de experiencia y pasión por el arte de la peluquería. Descubre mis múltiples servicios que realizo.</p>
+                <a href="#sigueme" class="btn btn-3d">Contáctame</a>
+            </div>
+        </section>
+
+        <section class="services" id="servicios">
+            <h2 class="animate-on-scroll">Servicios que realizo</h2>
+            <div class="service-container">
+                <div class="service animate-on-scroll">
+                    <img src="https://i.imgur.com/aaK41RQ.jpeg" alt="Cortes de Damas">
+                    <p>Cortes de Damas</p>
+                </div>
+                <div class="service animate-on-scroll">
+                    <img src="https://i.imgur.com/Hl7Qbxs.jpeg" alt="Decoloración">
+                    <p>Decoloración</p>
+                </div>
+                <div class="service animate-on-scroll">
+                    <img src="https://i.imgur.com/yegTNEv.jpeg" alt="Manicure y Pedicure">
+                    <p>Manicure y Pedicure</p>
+                </div>
+            </div>
+            <!-- Contenedor para el botón "Más servicios aquí" -->
+            <div class="btn-container animate-on-scroll">
+                <a href="servicios.html" class="btn btn-3d">Más servicios aquí</a>
+            </div>
+        </section>
+
+        <section class="values-section" id="acerca-de-mi">
+            <div class="values-text animate-on-scroll">
+                <h2>Acerca de mí</h2>
+                <p>Hola, soy Luz Merly, una apasionada peluquera con 2 años de experiencia en el mundo de la belleza y el cuidado capilar.<br><br>
+                    Mi enfoque es simple: escuchar, entender y crear. Cada persona es única, y por eso me esfuerzo por ofrecer un servicio totalmente personalizado, adaptado a tus necesidades, estilo y personalidad.</p>
+                <!-- Botón corregido -->
+                <a href="sobre-mi.html" class="btn btn-3d">¿Por qué elegirme?</a>
+            </div>
+            <div class="values-images animate-on-scroll">
+                <img src="https://i.imgur.com/qblA5gW.jpeg" alt="Facial">
+                <img src="https://i.imgur.com/NVgrGiD.jpeg" alt="Masaje">
+            </div>
+        </section>
+
+        <footer class="footer">
+            <div class="socials" id="sigueme">
+                <p><strong>Mis redes Sociales</strong></p>
+                <img src="https://i.imgur.com/8hR7Jnf.jpeg" alt="Facebook">
+                <img src="https://i.imgur.com/KKzc3k6.jpeg" alt="Twitter">
+                <img src="https://i.imgur.com/t0pYvqO.png" alt="Instagram">
+                <img src="https://i.imgur.com/dgU3k6H.png" alt="TikTok">
+            </div>
+            <div class="contact">
+                <p><strong>Contáctame para más información</strong></p>
+                <img src="https://i.imgur.com/1eDqgzS.jpeg" alt="WhatsApp">
+                <p>+51 999 999 999</p>
+            </div>
+        </footer>
     </div>
-
-    <section class="hero animate-on-scroll">
-        <img src="https://i.imgur.com/j9JRMyr.jpeg" alt="Imagen de peluquería">
-        <div class="hero-text">
-            <h1>Tu Peluquera Personal, Donde Tú Estés</h1>
-            <p>Con años de experiencia y pasión por el arte de la peluquería. Descubre mis múltiples servicios que realizo.</p>
-            <a href="#sigueme" class="btn btn-3d">Contáctame</a>
-        </div>
-    </section>
-    <section class="services" id="servicios">
-        <h2 class="animate-on-scroll">Servicios que realizo</h2>
-        <div class="service-container">
-            <div class="service animate-on-scroll">
-                <img src="https://i.imgur.com/aaK41RQ.jpeg" alt="Cortes de Damas">
-                <p>Cortes de Damas</p>
-            </div>
-            <div class="service animate-on-scroll">
-                <img src="https://i.imgur.com/Hl7Qbxs.jpeg" alt="Decoloración">
-                <p>Decoloración</p>
-            </div>
-            <div class="service animate-on-scroll">
-                <img src="https://i.imgur.com/yegTNEv.jpeg" alt="Manicure y Pedicure">
-                <p>Manicure y Pedicure</p>
-            </div>
-        </div>
-        <!-- Contenedor para el botón "Más servicios aquí" -->
-        <div class="btn-container animate-on-scroll">
-            <a href="servicios.html" class="btn btn-3d">Más servicios aquí</a>
-        </div>
-    </section>
-    <section class="values-section" id="acerca-de-mi">
-        <div class="values-text animate-on-scroll">
-            <h2>Acerca de mí</h2>
-            <p>Hola, soy Luz Merly, una apasionada peluquera con 2 años de experiencia en el mundo de la belleza y el cuidado capilar.<br><br>
-                Mi enfoque es simple: escuchar, entender y crear. Cada persona es única, y por eso me esfuerzo por ofrecer un servicio totalmente personalizado, adaptado a tus necesidades, estilo y personalidad.</p>
-            <!-- Botón corregido -->
-            <a href="sobre-mi.html" class="btn btn-3d">¿Por qué elegirme?</a>
-        </div>
-        <div class="values-images animate-on-scroll">
-            <img src="https://i.imgur.com/qblA5gW.jpeg" alt="Facial">
-            <img src="https://i.imgur.com/NVgrGiD.jpeg" alt="Masaje">
-        </div>
-    </section>
-    <footer class="footer">
-        <div class="socials" id="sigueme">
-            <p><strong>Mis redes Sociales</strong></p>
-            <img src="https://i.imgur.com/8hR7Jnf.jpeg" alt="Facebook">
-            <img src="https://i.imgur.com/KKzc3k6.jpeg" alt="Twitter">
-            <img src="https://i.imgur.com/t0pYvqO.png" alt="Instagram">
-            <img src="https://i.imgur.com/dgU3k6H.png" alt="TikTok">
-        </div>
-        <div class="contact">
-            <p><strong>Contáctame para más información</strong></p>
-            <img src="https://i.imgur.com/1eDqgzS.jpeg" alt="WhatsApp">
-            <p>+51 999 999 999</p>
-        </div>
-    </footer>
 
     <!-- Script para el menú lateral -->
     <script>
@@ -439,6 +604,16 @@
         animateElements.forEach((element) => {
             observer.observe(element);
         });
+
+        // Ocultar la pantalla de bienvenida después de 6 segundos y mostrar el contenido
+        setTimeout(function() {
+            // Desvanecer la pantalla de bienvenida
+            document.getElementById('welcome-screen').style.animation = 'fadeOut 1s ease-in-out forwards';
+            
+            // Mostrar el contenido principal inmediatamente
+            document.getElementById('main-content').style.display = 'block';
+            document.getElementById('main-content').style.opacity = '1';
+        }, 6000); // 6000 milisegundos = 6 segundos
     </script>
 </body>
 </html>
