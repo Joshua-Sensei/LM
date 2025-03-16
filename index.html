@@ -23,6 +23,8 @@
             align-items: center;
             flex-direction: column;
             z-index: 1000;
+            padding: 20px; /* Añadir padding para evitar que el texto toque los bordes */
+            box-sizing: border-box; /* Incluir el padding en el ancho y alto */
         }
 
         #welcome-title {
@@ -34,6 +36,21 @@
             white-space: nowrap; /* Evita el salto de línea */
             opacity: 0; /* Ocultar inicialmente */
             animation: fadeInContainer 0.1s ease-in-out 0.2s forwards; /* Mostrar contenedor */
+            text-align: center; /* Centrar el texto */
+        }
+
+        /* Ajustar el tamaño de la fuente para móviles */
+        @media (max-width: 768px) {
+            #welcome-title {
+                font-size: 3em; /* Tamaño de fuente más pequeño para móviles */
+            }
+            #welcome-subtitle {
+                font-size: 1.2em; /* Tamaño de fuente más pequeño para móviles */
+            }
+            #welcome-image {
+                width: 40vw; /* Tamaño más pequeño para móviles */
+                height: 40vw;
+            }
         }
 
         #welcome-title span {
@@ -73,6 +90,7 @@
             opacity: 0;
             color: #ffffff; /* Blanco para contraste */
             animation: fadeIn 1s ease-in-out 2s forwards;
+            text-align: center; /* Centrar el texto */
         }
 
         #welcome-image {
@@ -485,8 +503,8 @@
             <!-- Menú para PC -->
             <div class="nav-links">
                 <a href="index.html">Inicio</a>
+                <a href="servicios.html">Servicios</a> <!-- Cambiado para redirigir a servicios.html -->
                 <a href="#sigueme">Contactos</a>
-                <a href="#servicios">Servicios</a>
                 <a href="#acerca-de-mi">Acerca de mi</a>
             </div>
             <!-- Menú para móviles -->
@@ -497,8 +515,8 @@
         <div class="sidebar" id="sidebar">
             <a href="#" class="close-btn" id="close-btn">&times;</a>
             <a href="index.html">Inicio</a>
+            <a href="servicios.html">Servicios</a> <!-- Cambiado para redirigir a servicios.html -->
             <a href="#sigueme">Contactos</a>
-            <a href="#servicios">Servicios</a>
             <a href="#acerca-de-mi">Acerca de mi</a>
         </div>
 
