@@ -23,7 +23,7 @@
             align-items: center;
             flex-direction: column;
             z-index: 1000;
-            padding: 20px; /* Añadir padding para evitar que el texto toque los bordes */
+            padding: 40px; /* Aumentar el padding para dar más espacio */
             box-sizing: border-box; /* Incluir el padding en el ancho y alto */
         }
 
@@ -32,17 +32,24 @@
             font-family: 'Great Vibes', cursive; /* Fuente de caligrafía */
             color: #4CAF50; /* Verde principal */
             margin: 0;
-            overflow: hidden; /* Oculta el desbordamiento de las letras */
             white-space: nowrap; /* Evita el salto de línea */
             opacity: 0; /* Ocultar inicialmente */
             animation: fadeInContainer 0.1s ease-in-out 0.2s forwards; /* Mostrar contenedor */
             text-align: center; /* Centrar el texto */
+            text-shadow: 
+                -1px -1px 0 white,  
+                 1px -1px 0 white,
+                -1px  1px 0 white,
+                 1px  1px 0 white; /* Borde blanco */
+            padding: 0 20px; /* Añadir padding horizontal para evitar que el texto toque los bordes */
+            box-sizing: border-box; /* Incluir el padding en el ancho */
         }
 
         /* Ajustar el tamaño de la fuente para móviles */
         @media (max-width: 768px) {
             #welcome-title {
                 font-size: 3em; /* Tamaño de fuente más pequeño para móviles */
+                padding: 0 10px; /* Reducir el padding en móviles */
             }
             #welcome-subtitle {
                 font-size: 1.2em; /* Tamaño de fuente más pequeño para móviles */
